@@ -1,8 +1,13 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS  # <-- add this if not already
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # allow requests from client
+CORS(app)
+
+# ✅ Add this to fix the 404
+@app.route("/")
+def home():
+    return "Smart Parking Backend is Running"
 
 # Dummy parking data
 parking_data = [
@@ -24,3 +29,4 @@ def reserve_parking(spot_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
